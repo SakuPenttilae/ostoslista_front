@@ -33,6 +33,21 @@ function App() {
     })
   }
 
+  function remove(id) {
+    const json = JSON.stringify({id:id})
+    axios.post(URL+"delete.php", json, {
+      headers: {
+        "Content-Type" : "application/json"
+      }
+    }) .then((response) => {
+      const newList = items.filter((item) => item.id !== id);
+      setItems(newList)
+    }).catch(error => {
+      alert(error.response ? error.response.data.error : error)
+    })
+  }
+
+
   return (
     <div>
       <h3>Shoppinglist</h3>
@@ -44,7 +59,15 @@ function App() {
       </form>
       <ul className="no-bullets">
         {items?.map(item => (
-          <li key={item.id}> {item.description} {item.amount}</li>
+          <li key={item.id}>
+            {item.description}
+            &nbsp;
+            {item.amount}
+            &nbsp;
+            <a href="#" onClick={() => remove(item.id)}>
+              Delete
+            </a>
+            </li>
         ))}
       </ul>
     </div>
