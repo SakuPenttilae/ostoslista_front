@@ -27,6 +27,7 @@ function App() {
     }) .then((response) => {
       setItems(items => [...items, response.data])
       setItem("")
+      setAmount("")
     }).catch(error => {
       alert(error.response ? error.response.data.error : error)
     })
@@ -38,7 +39,7 @@ function App() {
       <form onSubmit={save}>
         <label>New Item </label>
         <input value={item} placeholder='Type of grocery' onChange={e => setItem(e.target.value)}/>
-        <input value={amount} placeholder='Amount' onChange={e => setAmount(e.target.value)}/>
+        <input value={amount} type="number" placeholder='Amount' onChange={e => setAmount(e.target.value)}/>
         <button>save</button>
       </form>
       <ul className="no-bullets">
