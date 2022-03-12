@@ -50,7 +50,7 @@ function App() {
 
   return (
     <div>
-      <h3>Shoppinglist</h3>
+      <h3>Shopping list</h3>
       <form onSubmit={save}>
         <label>New Item </label>
         <input value={item} placeholder='Type of grocery' onChange={e => setItem(e.target.value)}/>
